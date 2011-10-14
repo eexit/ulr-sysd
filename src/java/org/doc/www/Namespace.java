@@ -4,7 +4,6 @@
  */
 package org.doc.www;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import javax.xml.XMLConstants;
 import javax.xml.namespace.NamespaceContext;
@@ -24,22 +23,35 @@ public class Namespace implements NamespaceContext {
      * Context namespace prefix
      */
     final public static String PREFIX = "doc";
-
+    
+    /**
+     * Namespace URI getter
+     * @param prefix
+     * @return 
+     */
     @Override
-    public String getNamespaceURI(String string) {
-        return URI;
+    public String getNamespaceURI(String prefix) {
+        if (prefix.equals(PREFIX)) {
+            return URI;
+        }
+        return XMLConstants.XML_NS_URI;
     }
 
+    /**
+     * Prefix getter
+     * @param nsUri
+     * @return 
+     */
     @Override
-    public String getPrefix(String string) {
-        return PREFIX;
+    public String getPrefix(String nsUri) {
+        if (nsUri.equals(URI)) {
+            return PREFIX;
+        }
+        return XMLConstants.XML_NS_PREFIX;
     }
 
     @Override
     public Iterator getPrefixes(String string) {
-        ArrayList prefixes = new ArrayList();
-        prefixes.add(PREFIX);
-        return prefixes.iterator();
+        throw new UnsupportedOperationException("Not applicable.");
     }
-    
 }
