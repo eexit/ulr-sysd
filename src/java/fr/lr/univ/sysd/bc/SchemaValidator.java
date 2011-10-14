@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.XMLConstants;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
@@ -22,12 +23,6 @@ import org.xml.sax.SAXException;
  * @author eexit
  */
 public class SchemaValidator {
-    
-    /**
-     * Default W3C validation schema
-     */
-    final public static String W3C_XML_SCHEMA_URI = "http://www.w3.org/2001/XMLSchema";
-    
     /**
      * Default schema name
      */
@@ -66,7 +61,7 @@ public class SchemaValidator {
         try {
             Source xmlData = new StreamSource(xml);
             SchemaValidatorErrorHandler errorHandler = new SchemaValidatorErrorHandler();
-            SchemaFactory factory = SchemaFactory.newInstance(W3C_XML_SCHEMA_URI);
+            SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = factory.newSchema(schemaPath);
             Validator validator = schema.newValidator();
             validator.setErrorHandler(errorHandler);

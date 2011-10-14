@@ -5,6 +5,7 @@
 package fr.lr.univ.sysd.bc;
 
 import java.io.File;
+import org.doc.www.Namespace;
 
 /**
  *
@@ -21,12 +22,17 @@ public class Tester {
         }
     }
     
+    public static void parserTest(File xml) {
+        Parser parser = new Parser(xml, "//doc:motcle", new Namespace());
+        System.out.println(parser.hasResults() + " result(s) : " + parser.getResult());
+    }
+    
     public static void generatorTest(File xml, File xsl, File pdf) {
         Generator gen = new Generator("Foo Document", "Joris Berthelot");
         gen.generatePdf(xml, xsl, pdf);
+        System.out.println(pdf.getName() + " : " + pdf.length() / 1024 + " KB");
     }
     
-
     public static void main(String[] args) {
         File baseDir = new File("data");
         File outDir = new File("test");
@@ -39,6 +45,10 @@ public class Tester {
         
         System.out.println("--- Validator call ---");
         validatorTest(xml, xsd);
+        
+        System.out.println("--- Parser call ---");
+        parserTest(xml);
+        
         System.out.println("--- Generator call ---");
         generatorTest(xml, xsl, pdf);
     }
