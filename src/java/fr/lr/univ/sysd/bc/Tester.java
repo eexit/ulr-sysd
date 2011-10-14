@@ -37,7 +37,7 @@ public class Tester {
         File baseDir = new File("data");
         File outDir = new File("test");
         outDir.mkdirs();
-
+        
         File xml = new File(baseDir, "xml/docReference.xml");
         File xsd = new File(baseDir, SchemaValidator.XSD_SCHEMA_FILENAME);
         File xsl = new File(baseDir, "transformer.xsl");

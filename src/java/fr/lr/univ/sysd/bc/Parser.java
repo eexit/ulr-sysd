@@ -18,7 +18,6 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import org.doc.www.Namespace;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -135,6 +134,10 @@ public class Parser {
         }
     }
 
+    /**
+     * Test if there are results and gives how many
+     * @return 
+     */
     public int hasResults() {
         if (null == this.nodeSet) {
             return 0;
