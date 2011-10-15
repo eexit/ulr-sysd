@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package webservice;
+package fr.lr.univ.sysd.ws;
 
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -19,14 +19,5 @@ public class NewWebService {
     @WebMethod(operationName = "hello")
     public String hello(@WebParam(name = "name") String txt) {
         return "Hello " + txt + " !";
-    }
-
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "depotDocument")
-    public String depotDocument(@WebParam(name = "name") String name, @WebParam(name = "data") byte[] data) {
-        //TODO write your implementation code here:
-        return null;
     }
 }
