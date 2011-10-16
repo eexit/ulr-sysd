@@ -33,7 +33,7 @@ public class NewWebService {
     @PostConstruct
     private void deserialise() throws FileNotFoundException, IOException
     {
-        String path=new File("").getAbsolutePath(); 
+        String path = new File(".").getAbsolutePath(); 
         f = new File(path+"/"+"BaseProjet");   
         if(this.f.exists()==false)
         {
