@@ -68,7 +68,7 @@ public int depotDocument(String p_name , byte[] p_donnee) throws FileNotFoundExc
     
 
     this.map.put(id, d);
-    return 0;
+    return id;
 }
 
 
@@ -94,7 +94,7 @@ public ArrayList<String> rechercheDocument(ArrayList<String> motsCle)
     return r;
 }
 
-public byte[] retoutneDocument(int p_id) throws FileNotFoundException, IOException
+public byte[] retourneDocument(int p_id) throws FileNotFoundException, IOException
 {
     //TODO test
     if(this.map.containsKey(p_id)==false)

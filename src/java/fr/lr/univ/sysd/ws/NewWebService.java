@@ -47,31 +47,14 @@ public class NewWebService {
     {
         this.st.serialise();
     }
-    
-    
-    /** This is a sample web service operation */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
-    }
-
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "status")
-    public String status() {
-        //TODO write your implementation code here:
-        return this.st.toString();
-    }
 
     /**
      * Web service operation
      */
     @WebMethod(operationName = "depotDocument")
-    public String depotDocument(@WebParam(name = "name") String name, @WebParam(name = "data") byte[] data) throws FileNotFoundException, IOException {
+    public int depotDocument(@WebParam(name = "name") String name, @WebParam(name = "data") byte[] data) throws FileNotFoundException, IOException {
         //TODO write your implementation code here:
-        this.st.depotDocument(name, data);
-        return null;
+        return this.st.depotDocument(name, data);
     }
 
     /**
@@ -80,7 +63,7 @@ public class NewWebService {
     @WebMethod(operationName = "retourneDocument")
     public byte[] retourneDocument(@WebParam(name = "id") int id) throws FileNotFoundException, IOException {
         //TODO write your implementation code here:
-        return this.st.retoutneDocument(id);
+        return this.st.retourneDocument(id);
     }
 
     /**
