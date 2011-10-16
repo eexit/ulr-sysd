@@ -68,8 +68,8 @@ public class Stockage {
 
 
         for (int i = 0; i < this.map.size(); i++) {
-            for (int y = 0; y < ((Document) map.get(i)).getdescription().size(); y++) {
-                if (motsCle.contains(((Document) map.get(i)).getdescription().get(y))) {
+            for (int y = 0; y < ((Document) map.get(i)).getDescription().size(); y++) {
+                if (motsCle.contains(((Document) map.get(i)).getDescription().get(y))) {
                     r.add("id= " + ((Document) map.get(i)).getId() + "  nom= " + ((Document) map.get(i)).getNom());
                 }
             }
@@ -158,13 +158,17 @@ public class Stockage {
 
         return 0;
     }
-
+   
+    /**
+     * Gets a document name with his ID
+     * @param p_id
+     * @return 
+     */
     public String getNameDocument(int p_id) {
-        if(this.map.containsKey(p_id))
-        {
-            return ((Document)this.map.get(p_id)).getNom();
+        if (!this.map.containsKey(p_id)) {
+            return null;
         }
-        return null;
+        return ((Document) this.map.get(p_id)).getNom();
     }
 
     private int createID() {
