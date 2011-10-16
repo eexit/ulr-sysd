@@ -50,14 +50,16 @@ public int depotDocument(String p_name , byte[] p_donnee) throws FileNotFoundExc
     File xml = new File("BaseProjet/"+p_name);
     parser = new Parser(xml, "//doc:motcle", new Namespace());
     ArrayList<String> rTmp = parser.getResult();
-    /*
-     SchemaValidator validator = new SchemaValidator(xsd);
-        if (validator.validate(xml)) {
-            System.out.println("[ OK ] " + xml.getName() + " is valid!");
-        } else {
-            System.err.println("[FAIL] " + xml.getName() + " is valid!");
-        }
-    */
+    
+    File xsd = new File("BaseProjet/"+SchemaValidator.XSD_SCHEMA_FILENAME);
+    SchemaValidator validator = new SchemaValidator(xsd);
+    if (validator.validate(xml)) {
+        System.out.println("[ OK ] " + xml.getName() + " is valid!");
+    } else {
+        xml.delete();
+        //this.map.remove(d)
+    }
+    
     
     d.setDescriptiot(rTmp);
     
