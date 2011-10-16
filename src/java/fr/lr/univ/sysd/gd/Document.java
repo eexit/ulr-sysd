@@ -73,7 +73,7 @@ public int addDescription(String p_nom)
     return 0;
 }
 
-public int setDescriptiot(ArrayList<String> p_description)
+public int setDescription(ArrayList<String> p_description)
 {
     this.description = p_description;
     return 0;

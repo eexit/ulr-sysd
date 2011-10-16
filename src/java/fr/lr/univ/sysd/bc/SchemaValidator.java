@@ -47,7 +47,6 @@ public class SchemaValidator {
     public SchemaValidator(File schemaPath) {
         if (!schemaPath.exists()) {
             Logger.getLogger(SchemaValidator.class.getName()).log(Level.SEVERE, "Schema file not found!");
-            return;
         }
         this.schemaPath = schemaPath;
     }
@@ -58,6 +57,10 @@ public class SchemaValidator {
      * @return 
      */
     public boolean validate(File xml) {
+        if (false == this.schemaPath.exists()) {
+            return false;
+        }
+        
         try {
             Source xmlData = new StreamSource(xml);
             SchemaValidatorErrorHandler errorHandler = new SchemaValidatorErrorHandler();

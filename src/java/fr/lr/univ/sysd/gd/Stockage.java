@@ -56,11 +56,11 @@ public int depotDocument(String p_name , byte[] p_donnee) throws FileNotFoundExc
     if (validator.validate(xml)) {
         System.out.println("[ OK ] " + xml.getName() + " is valid!");
     } else {
-        xml.delete();        
+        xml.delete();
         return -1;
     }
         
-    d.setDescriptiot(rTmp);
+    d.setDescription(rTmp);
 
     this.map.put(id, d);
     return id;
@@ -154,7 +154,7 @@ public int serialise() throws FileNotFoundException, IOException
         File xml = new File("BaseProjet/"+p_nom);
         parser = new Parser(xml, "//doc:motcle", new Namespace());
         ArrayList<String> rTmp = parser.getResult();
-        d.setDescriptiot(rTmp);
+        d.setDescription(rTmp);
         
         this.map.put(p_id, d);
          
