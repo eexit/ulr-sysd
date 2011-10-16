@@ -7,83 +7,100 @@ package fr.lr.univ.sysd.gd;
 import java.util.ArrayList;
 
 /**
- *
+ * Document class
+ * 
  * @author choubi
+ * @review eexit
  */
-
-
 public class Document {
+    /**
+     * Document ID
+     */
+    protected int id;
     
-private int id;
-private String nom;
-private ArrayList<String> description;    
+    /**
+     * Document name
+     */
+    protected String nom;
+    
+    /**
+     * Document description
+     */
+    protected ArrayList<String> description;
+    
+    /**
+     * Class constructor
+     * @param p_id
+     * @param p_nom 
+     */
+    public Document(int p_id, String p_nom) {
+        this.id = p_id;
+        this.nom = p_nom;
+        this.description = new ArrayList<String>();
+    }
+    
+    /**
+     * Document ID getter
+     * @return 
+     */
+    public int getId() {
+        return id;
+    }
 
+    /**
+     * Document name getter
+     * @return 
+     */
+    public String getNom() {
+        return nom;
+    }
+    
+    /**
+     * Document description getter
+     * @return 
+     */
+    public ArrayList<String> getDescription() {
+        return this.description;
+    }
 
+    /**
+     * Document ID setter
+     * @param p_id
+     * @return 
+     */
+    public void setId(int p_id) {
+        this.id = p_id;
+    }
+    
+    /**
+     * Document name setter
+     * @param p_nom 
+     */
+    public void setNom(String p_nom) {
+        this.nom = p_nom;
+    }
 
+    /**
+     * Adds a description to the document
+     * @param p_nom 
+     */
+    public void addDescription(String p_nom) {
+        this.description.add(nom);
+    }
 
-
-public Document(int p_id, String p_nom)
-{
-    id = p_id;
-    nom = p_nom;
-    description = new ArrayList<String>();
-}
-
-
-
-
-//---------
-
-
-
-//getter
-public int getId()
-{
-    return id;
-}
-
-public String getNom()
-{
-    return nom;
-}
-
-public ArrayList<String> getdescription()
-{
-    return this.description;
-}
-
-
-
-//setter
-public int setId(int p_id)
-{
-    this.id = p_id;
-    return 0;
-}
-
-public int setNom(String p_nom)
-{
-    this.nom = p_nom;
-    return 0;
-}
-
-public int addDescription(String p_nom)
-{
-    this.description.add(nom);
-    return 0;
-}
-
-public int setDescription(ArrayList<String> p_description)
-{
-    this.description = p_description;
-    return 0;
-}
-
-
-public String toString()
-{
-    return ("id= "+this.id+"; nom= "+this.nom +"; description= "+this.description+" || \n");
-}
-
-
+    /**
+     * Document description setter
+     * @param p_description
+     */
+    public void setDescription(ArrayList<String> p_description) {
+        this.description = p_description;
+    }
+    
+    /**
+     * Customized document output
+     * @return 
+     */
+    public String toString() {
+        return ("id= " + this.id + "; nom= " + this.nom + "; description= " + this.description + " || \n");
+    }
 }
