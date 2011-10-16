@@ -94,7 +94,7 @@ public class NewWebService {
         File dirTmp = new File("BaseProjet/tmp");
         dirTmp.mkdir();
         File xml = new File("BaseProjet/"+this.st.getNameDocument(id));
-        File xsl = new File("BaseProjet/tpm/tmpXSLfile");
+        File xsl = new File("BaseProjet/tmp/tmpXSLfile");
         FileOutputStream fos = new FileOutputStream(xsl); 
         fos.write(XSLfo);
         
