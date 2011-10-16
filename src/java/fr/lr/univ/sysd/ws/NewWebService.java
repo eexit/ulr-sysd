@@ -72,15 +72,12 @@ public class NewWebService {
      */
     @WebMethod(operationName = "rechercheDocument")
     public String rechercheDocument(@WebParam(name = "motsCle") String motsCle) {
-        //TODO write your implementation code here:
         StringTokenizer stringToken = new StringTokenizer(motsCle,",");
         ArrayList<String> mots = new ArrayList<String>();
         
-        while(stringToken.hasMoreTokens())
-        {
-            mots.add(stringToken.nextToken());
+        while (stringToken.hasMoreTokens()) {
+            mots.add(stringToken.nextToken().trim());
         }
-
         return this.st.rechercheDocument(mots).toString();
     }
 
