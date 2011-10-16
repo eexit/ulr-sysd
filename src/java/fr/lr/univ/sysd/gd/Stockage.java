@@ -97,7 +97,7 @@ public class Stockage {
 
 //decrit la structure de stockage dans le fichier description.txt
     public int deserialise() throws IOException {
-        File f = new File(this.root, "desctiption.txt");
+        File f = new File(this.root, "description.txt");
         FileWriter fr = new FileWriter(f);
         BufferedWriter bw = new BufferedWriter(fr);
 
@@ -115,7 +115,7 @@ public class Stockage {
     }
 
     public int serialise() throws FileNotFoundException, IOException {
-        File f = new File(this.root, "desctiption.txt");
+        File f = new File(this.root, "description.txt");
         f.createNewFile();
         FileReader fr = new FileReader(f);
         BufferedReader br = new BufferedReader(fr);
