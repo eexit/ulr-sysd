@@ -4,6 +4,9 @@
  */
 package fr.lr.univ.sysd.gd;
 
+import org.doc.www.Namespace;
+
+import fr.lr.univ.sysd.bc.Parser;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -41,8 +44,15 @@ public Stockage(String p_path)
 //test ok
 public int depotDocument(String p_name , byte[] p_donnee) throws FileNotFoundException, IOException
 {
+    Parser parser;
+    File xml = new File("BaseProjet/"+p_name);
+    parser = new Parser(xml, "//doc:motcle", new Namespace());
+    ArrayList<String> rTmp = parser.getResult();
+    
     int id = createID();
     Document d = new Document(id,p_name);
+    d.setDescriptiot(rTmp);
+    
     this.writeDocument(d, p_donnee);
     this.map.put(id, d);
     return 0;
@@ -52,19 +62,22 @@ public int depotDocument(String p_name , byte[] p_donnee) throws FileNotFoundExc
 
 public ArrayList<String> rechercheDocument(ArrayList<String> motsCle)
 {
-    //TODO
+    //TODO 
     ArrayList<String> r = new ArrayList<String>();
+    
     
     for(int i=0 ; i<this.map.size() ; i++)
     {
-        for(int y=0 ; y< ((Document)map.get(y)).getdescription().size() ; y++)
+        for(int y=0 ; y< ((Document)map.get(i)).getdescription().size() ; y++)
         {
-            if( motsCle.contains( ((Document)map.get(y)).getdescription().get(y)  ) )
+            if( motsCle.contains( ((Document)map.get(i)).getdescription().get(y)  ) )
             {
-                r.add(  "id= "+((Document)map.get(y)).getId()+"  nom= "+  ((Document)map.get(y)).getNom()   );
+                r.add(  "id= "+((Document)map.get(i)).getId()+"  nom= "+  ((Document)map.get(i)).getNom()   );
             }
         }
     }
+          
+
     return r;
 }
 
@@ -127,6 +140,14 @@ public int serialise() throws FileNotFoundException, IOException
             p_nom = line;
         }
         Document d = new Document(p_id,p_nom);
+        
+        //get file description
+        Parser parser;
+        File xml = new File("BaseProjet/"+p_nom);
+        parser = new Parser(xml, "//doc:motcle", new Namespace());
+        ArrayList<String> rTmp = parser.getResult();
+        d.setDescriptiot(rTmp);
+        
         this.map.put(p_id, d);
          
     }
@@ -148,23 +169,16 @@ private int writeDocument(Document p_doc , byte[] p_d) throws FileNotFoundExcept
     return 0;
 }
 
+public String getNameDocument(int p_id)
+{
+    return ((Document)this.map.get(p_id)).getNom();
+}
+
+
 private int createID()
 {
     return ID++;
 }
-
-
-
-
-
-
-/*
-public int addDocument(Document p_doc)
-{
-    this.map.put(p_doc.getId(), p_doc);
-    return 0;
-}
-*/
 
 
 
