@@ -160,7 +160,11 @@ public class Stockage {
     }
 
     public String getNameDocument(int p_id) {
-        return ((Document) this.map.get(p_id)).getNom();
+        if(this.map.containsKey(p_id))
+        {
+            return ((Document)this.map.get(p_id)).getNom();
+        }
+        return null;
     }
 
     private int createID() {
