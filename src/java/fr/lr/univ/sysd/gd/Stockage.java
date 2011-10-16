@@ -7,6 +7,7 @@ package fr.lr.univ.sysd.gd;
 import org.doc.www.Namespace;
 
 import fr.lr.univ.sysd.bc.Parser;
+import fr.lr.univ.sysd.bc.SchemaValidator;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -41,19 +42,29 @@ public Stockage(String p_path)
 //test ok
 public int depotDocument(String p_name , byte[] p_donnee) throws FileNotFoundException, IOException
 {
-
-    
+    int id = createID();
+    Document d = new Document(id,p_name);
+    this.writeDocument(d, p_donnee);
     
     Parser parser;
     File xml = new File("BaseProjet/"+p_name);
     parser = new Parser(xml, "//doc:motcle", new Namespace());
     ArrayList<String> rTmp = parser.getResult();
+    /*
+     SchemaValidator validator = new SchemaValidator(xsd);
+        if (validator.validate(xml)) {
+            System.out.println("[ OK ] " + xml.getName() + " is valid!");
+        } else {
+            System.err.println("[FAIL] " + xml.getName() + " is valid!");
+        }
+    */
     
-    int id = createID();
-    Document d = new Document(id,p_name);
     d.setDescriptiot(rTmp);
     
-    this.writeDocument(d, p_donnee);
+    
+    
+    
+
     this.map.put(id, d);
     return 0;
 }
