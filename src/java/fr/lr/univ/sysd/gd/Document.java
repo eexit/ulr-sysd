@@ -25,7 +25,7 @@ private ArrayList<String> description;
 public Document(int p_id, String p_nom)
 {
     id = p_id;
-    nom = p_nom+id;
+    nom = p_nom;
     description = new ArrayList<String>();
 }
 
@@ -82,7 +82,7 @@ public int setDescriptiot(ArrayList<String> p_description)
 
 public String toString()
 {
-    return ("id= "+this.id+"; nom= "+this.nom +" || \n");
+    return ("id= "+this.id+"; nom= "+this.nom +"; description= "+this.description+" || \n");
 }
 
 
