@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.jws.WebService;
@@ -72,11 +73,15 @@ public class NewWebService {
     @WebMethod(operationName = "rechercheDocument")
     public String rechercheDocument(@WebParam(name = "motsCle") String motsCle) {
         //TODO write your implementation code here:
+        StringTokenizer stringToken = new StringTokenizer(motsCle,",");
         ArrayList<String> mots = new ArrayList<String>();
-        mots.add(motsCle);
-        this.st.rechercheDocument(mots);
         
-        return null;
+        while(stringToken.hasMoreTokens())
+        {
+            mots.add(stringToken.nextToken());
+        }
+
+        return this.st.rechercheDocument(mots).toString();
     }
 
     /**
