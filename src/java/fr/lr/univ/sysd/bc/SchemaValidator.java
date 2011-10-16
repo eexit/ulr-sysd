@@ -31,7 +31,7 @@ public class SchemaValidator {
     /**
      * Schema path
      */
-    public File schemaPath = new File(XSD_SCHEMA_FILENAME);
+    public File schemaPath = null;
     
     /**
      * Class constructor
