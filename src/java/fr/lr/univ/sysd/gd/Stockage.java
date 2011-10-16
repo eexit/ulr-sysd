@@ -7,7 +7,9 @@ package fr.lr.univ.sysd.gd;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,18 +23,11 @@ import java.util.Map;
  */
 public class Stockage {
 
-//chemin vers le dossier de stoclage    
+
 private String path = "/home/choubi/Documents/BaseProjet"; //path par default
-
-//clé autoincrémenté
 private int ID;
+private Map map = new HashMap();
 
-public static Map map = new HashMap();
-
-public Stockage()
-{ 
-    ID=0;
-}
 
 public Stockage(String p_path)
 { 
@@ -41,23 +36,26 @@ public Stockage(String p_path)
 }
 
 
+
+
+//test ok
 public int depotDocument(String p_name , byte[] p_donnee) throws FileNotFoundException, IOException
 {
-    System.out.println("Stockage-> depotdocument... ");
     int id = createID();
-    Document d = new Document(id,p_name,path);
-    d.write(p_donnee);
-    map.put(id, d);
-    System.out.println("Stockage-> document= "+d.toString());
+    Document d = new Document(id,p_name);
+    this.writeDocument(d, p_donnee);
+    this.map.put(id, d);
     return 0;
 }
+
+
 
 public ArrayList<String> rechercheDocument(ArrayList<String> motsCle)
 {
     //TODO
     ArrayList<String> r = new ArrayList<String>();
     
-    for(int i=0 ; i<map.size() ; i++)
+    for(int i=0 ; i<this.map.size() ; i++)
     {
         for(int y=0 ; y< ((Document)map.get(y)).getdescription().size() ; y++)
         {
@@ -70,12 +68,26 @@ public ArrayList<String> rechercheDocument(ArrayList<String> motsCle)
     return r;
 }
 
-public byte[] retoutneDocument(int p_id)
+public byte[] retoutneDocument(int p_id) throws FileNotFoundException, IOException
 {
-    return ((Document)map.get(p_id)).getDonnee();
+    //TODO test
+    if(this.map.containsKey(p_id)==false)
+    {
+        return null;
+    }   
+    
+    String s;
+    s = ((Document)this.map.get(p_id)).getNom();
+    File f = new File(this.path+"/"+s);
+    FileInputStream fis = new FileInputStream(f);
+    byte[] b = new byte[(int)f.length()];	
+    fis.read(b);
+
+    return b;
 }
 
-public int serialise() throws IOException
+//decrit la structure de stockage dans le fichier description.txt
+public int deserialise() throws IOException
 {
     File f = new File(this.path+"/"+"desctiption.txt");
     FileWriter fr = new FileWriter(f);
@@ -84,12 +96,9 @@ public int serialise() throws IOException
     for(int i=0 ; i<this.map.size() ; i++)
     {
         int id = ((Document)this.map.get(i)).getId();
-        String path = ((Document)this.map.get(i)).getPath();
         String nom = ((Document)this.map.get(i)).getNom();
         bw.write(id+"\n");
-        bw.write(path+"\n");
         bw.write(nom+"\n");
-       
     }
     bw.flush();
     bw.close();
@@ -98,31 +107,44 @@ public int serialise() throws IOException
     return 0;
 }
 
-public int deserialise() throws FileNotFoundException, IOException
+public int serialise() throws FileNotFoundException, IOException
 {
     File f = new File(this.path+"/"+"desctiption.txt");
+    f.createNewFile();
     FileReader fr = new FileReader(f);
     BufferedReader br = new BufferedReader(fr);
     
     String line;
+    
+    String p_nom = null;
+    int p_id;
+    
     while( (line = br.readLine()) !=null)
     {
-        int id = Integer.valueOf(line);
-        String path = br.readLine();
-        String nom = br.readLine();
-        Document d = new Document(id,nom,path);
-        this.map.put(id, d);
+        p_id = Integer.parseInt(line); 
+        if((line = br.readLine()) !=null)
+        {
+            p_nom = line;
+        }
+        Document d = new Document(p_id,p_nom);
+        this.map.put(p_id, d);
+         
     }
-    
-    
-    
     
     return 0;
 }
 
-public int setPath(String p_path)
+//test ok
+private int writeDocument(Document p_doc , byte[] p_d) throws FileNotFoundException, IOException
 {
-    this.path = p_path;
+    File file = new File(this.path+"/"+p_doc.getNom());
+    file.createNewFile();
+    
+    FileOutputStream fos = new FileOutputStream(file); 
+    FileWriter filewriter = new FileWriter(file);    
+    fos.write(p_d);
+    fos.close();
+
     return 0;
 }
 
@@ -131,10 +153,50 @@ private int createID()
     return ID++;
 }
 
-public String toString()
+
+
+
+
+
+/*
+public int addDocument(Document p_doc)
 {
-    return map.toString();
+    this.map.put(p_doc.getId(), p_doc);
+    return 0;
+}
+*/
+
+
+
+
+
+/*
+ * setter & getter
+ */
+
+public int setPath(String p_path)
+{
+    this.path = p_path;
+    return 0;
 }
 
+public String getPath()
+{
+    return this.path;
+}
+
+
+
+
+
+
+
+
+public String toString()
+{
+    String s = "path= "+this.path+"\n";
+        
+    return s+map.toString();
+}
 
 }
