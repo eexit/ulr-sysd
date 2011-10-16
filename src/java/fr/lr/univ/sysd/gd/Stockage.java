@@ -115,8 +115,11 @@ public class Stockage {
     }
 
     public int serialise() throws FileNotFoundException, IOException {
-        File f = new File(this.root, "description.txt");
-        f.createNewFile();
+        File f = new File(this.root, "description.txt");        
+        if(f.exists()==false)
+        {
+           f.createNewFile();         
+        }
         FileReader fr = new FileReader(f);
         BufferedReader br = new BufferedReader(fr);
 
