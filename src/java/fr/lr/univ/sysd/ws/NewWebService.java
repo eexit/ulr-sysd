@@ -103,6 +103,8 @@ public class NewWebService {
     public byte[] generePDF(@WebParam(name = "id") int id, @WebParam(name = "XSLfo") byte[] XSLfo) throws FileNotFoundException, IOException {
         //TODO write your implementation code here:
         Generator gen = new Generator("Foo Document", "Joris Berthelot"); 
+        File dirTmp = new File("BaseProjet/tmp");
+        dirTmp.mkdir();
         File xml = new File("BaseProjet/"+this.st.getNameDocument(id));
         File xsl = new File("BaseProjet/tpm/tmpXSLfile");
         FileOutputStream fos = new FileOutputStream(xsl); 
