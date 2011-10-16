@@ -72,15 +72,12 @@ public class NewWebService {
      */
     @WebMethod(operationName = "rechercheDocument")
     public String rechercheDocument(@WebParam(name = "motsCle") String motsCle) {
-        //TODO write your implementation code here:
         StringTokenizer stringToken = new StringTokenizer(motsCle,",");
         ArrayList<String> mots = new ArrayList<String>();
         
-        while(stringToken.hasMoreTokens())
-        {
-            mots.add(stringToken.nextToken());
+        while (stringToken.hasMoreTokens()) {
+            mots.add(stringToken.nextToken().trim());
         }
-
         return this.st.rechercheDocument(mots).toString();
     }
 
@@ -94,7 +91,7 @@ public class NewWebService {
         File dirTmp = new File("BaseProjet/tmp");
         dirTmp.mkdir();
         File xml = new File("BaseProjet/"+this.st.getNameDocument(id));
-        File xsl = new File("BaseProjet/tpm/tmpXSLfile");
+        File xsl = new File("BaseProjet/tmp/tmpXSLfile");
         FileOutputStream fos = new FileOutputStream(xsl); 
         fos.write(XSLfo);
         
