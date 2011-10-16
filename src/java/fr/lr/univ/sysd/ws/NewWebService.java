@@ -20,7 +20,7 @@ import javax.jws.WebParam;
 @WebService(serviceName = "NewWebService")
 public class NewWebService {
 
-    private Stockage st = new Stockage("");
+    private Stockage st = new Stockage("/home/choubi/Documents/BaseProjet");
     
     
     @PostConstruct
@@ -47,8 +47,9 @@ public class NewWebService {
      * Web service operation
      */
     @WebMethod(operationName = "depotDocument")
-    public String depotDocument(@WebParam(name = "name") String name, @WebParam(name = "data") byte[] data) {
+    public String depotDocument(@WebParam(name = "name") String name, @WebParam(name = "data") byte[] data) throws FileNotFoundException, IOException {
         //TODO write your implementation code here:
+        //this.st.depotDocument(name, data);
         return null;
     }
 
