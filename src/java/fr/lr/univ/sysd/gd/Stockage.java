@@ -42,7 +42,7 @@ public Stockage(String p_path)
 //test ok
 public int depotDocument(String p_name , byte[] p_donnee) throws FileNotFoundException, IOException
 {
-       int id = createID();
+    int id = createID();
     Document d = new Document(id,p_name);
     this.writeDocument(d, p_donnee);
     
@@ -57,13 +57,13 @@ public int depotDocument(String p_name , byte[] p_donnee) throws FileNotFoundExc
         System.out.println("[ OK ] " + xml.getName() + " is valid!");
     } else {
         xml.delete();        
-        Stockage.map.remove(id);
+        return -1;
     }
         
     d.setDescriptiot(rTmp);
 
     this.map.put(id, d);
-    return 0;
+    return id;
 }
 
 
