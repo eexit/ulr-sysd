@@ -28,22 +28,22 @@ public class Stockage {
 
 
 private String path = "/home/choubi/Documents/BaseProjet"; //path par default
-private int ID;
-private Map map = new HashMap();
+private static int ID = 0;
+private static Map map = new HashMap();
 
 
 public Stockage(String p_path)
 { 
-    ID=0;
     this.path = p_path;
 }
-
-
 
 
 //test ok
 public int depotDocument(String p_name , byte[] p_donnee) throws FileNotFoundException, IOException
 {
+
+    
+    
     Parser parser;
     File xml = new File("BaseProjet/"+p_name);
     parser = new Parser(xml, "//doc:motcle", new Namespace());
@@ -91,7 +91,7 @@ public byte[] retoutneDocument(int p_id) throws FileNotFoundException, IOExcepti
     
     String s;
     s = ((Document)this.map.get(p_id)).getNom();
-    File f = new File(this.path+"/"+s);
+    File f = new File("BaseProjet/"+s);
     FileInputStream fis = new FileInputStream(f);
     byte[] b = new byte[(int)f.length()];	
     fis.read(b);
@@ -177,6 +177,7 @@ public String getNameDocument(int p_id)
 
 private int createID()
 {
+    
     return ID++;
 }
 
