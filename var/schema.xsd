@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.doc.org"
+    targetNamespace="http://www.doc.org"
+    elementFormDefault="qualified">
+    <xsd:element name="motcles">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="motcle" type="xsd:string" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="section">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string">
+                    <xsd:attribute name="titre" type="xsd:string" use="required"/>
+                </xsd:extension>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="article">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="titre" type="xsd:string"/>
+                <xsd:element name="resume" type="xsd:string"/>
+                <xsd:element ref="motcles"/>
+                <xsd:element ref="section" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
