@@ -1,4 +1,3 @@
-<!-- transformer.xsl | author Joris Berthelot <joris.berthelot@gmail.com> -->
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
     xmlns:doc="http://www.doc.org"
