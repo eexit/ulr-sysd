@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.lr.univ.sysd.soap.server;
+package fr.lr.univ.sysd.ws.server;
 
 import java.util.ArrayList;
 

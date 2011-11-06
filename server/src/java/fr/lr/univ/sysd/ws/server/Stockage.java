@@ -2,9 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.lr.univ.sysd.soap.server;
+package fr.lr.univ.sysd.ws.server;
 
-import fr.lr.univ.sysd.soap.server.Document;
 import org.doc.www.Namespace;
 
 import fr.lr.univ.sysd.bc.Parser;
