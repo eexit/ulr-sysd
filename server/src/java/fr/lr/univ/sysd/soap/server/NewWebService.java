@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.lr.univ.sysd.ws;
+package fr.lr.univ.sysd.soap.server;
 
 import fr.lr.univ.sysd.bc.Generator;
-import fr.lr.univ.sysd.gd.Stockage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
