@@ -77,8 +77,8 @@ public class MakePdf {
         fis.read(xslData);
         fis.close();
         
-        byte[] xmldata = ws.generePDF(this.id, xslData);
-        fos.write(xmldata);
+        byte[] xmlData = ws.generePDF(this.id, xslData);
+        fos.write(xmlData);
         fos.close();
     }
     
