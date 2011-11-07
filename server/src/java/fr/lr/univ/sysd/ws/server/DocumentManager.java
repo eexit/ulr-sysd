@@ -49,7 +49,6 @@ public class DocumentManager {
      */
     @WebMethod(operationName = "depotDocument")
     public int depotDocument(@WebParam(name = "name") String name, @WebParam(name = "data") byte[] data) throws FileNotFoundException, IOException {
-        //TODO write your implementation code here:
         return this.st.depotDocument(name, data);
     }
 
@@ -58,7 +57,6 @@ public class DocumentManager {
      */
     @WebMethod(operationName = "retourneDocument")
     public byte[] retourneDocument(@WebParam(name = "id") int id) throws FileNotFoundException, IOException {
-        //TODO write your implementation code here:
         return this.st.retourneDocument(id);
     }
 

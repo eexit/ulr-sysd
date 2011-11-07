@@ -31,7 +31,7 @@ public class Post {
      * @throws FileNotFoundException 
      */
     public Post(File xml) throws FileNotFoundException {
-        if (!xml.exists()) {
+        if (!xml.isFile()) {
             throw new FileNotFoundException("XML file not found!");
         }
         
@@ -53,6 +53,7 @@ public class Post {
         FileInputStream fis = new FileInputStream(this.xml);
         byte[] data = new byte[(int) this.xml.length()];
         fis.read(data);
+        fis.close();
         
         return ws.depotDocument(this.xml.getName(), data);
     }
@@ -62,10 +63,14 @@ public class Post {
      * @param args 
      */
     public static void main(String[] args) {
+        
+        /**
+         * TODO implement method args management
+         */
+        
         try {
-            Post post = new Post(new File("./../var/example.xml"));
+            Post post = new Post(new File("../var/", "example.xml"));
             System.out.println("Document enregistré sous l'ID #" + post.exec());
-            post.exec();
         } catch (IOException ex) {
             Logger.getLogger(Post.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException_Exception ex) {

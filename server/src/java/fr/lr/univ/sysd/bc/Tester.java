@@ -34,14 +34,14 @@ public class Tester {
     }
     
     public static void main(String[] args) {
-        File baseDir = new File("data");
+        File baseDir = new File("../var");
         File outDir = new File("test");
         outDir.mkdirs();
         
-        File xml = new File(baseDir, "xml/docReference.xml");
+        File xml = new File(baseDir, "example.xml");
         File xsd = new File(baseDir, SchemaValidator.XSD_SCHEMA_FILENAME);
         File xsl = new File(baseDir, "transformer.xsl");
-        File pdf = new File(outDir, "docReference.pdf");
+        File pdf = new File(outDir, "example.pdf");
         
         System.out.println("--- Validator call ---");
         validatorTest(xml, xsd);

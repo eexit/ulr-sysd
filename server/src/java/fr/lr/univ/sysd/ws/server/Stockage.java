@@ -44,13 +44,14 @@ public class Stockage {
         int id = createID();
         Document d = new Document(id, p_name);
         this.writeDocument(d, p_donnee);
-
+        
         Parser parser;
         File xml = new File(this.data, p_name);
         parser = new Parser(xml, "//doc:motcle", new Namespace());
         ArrayList<String> rTmp = parser.getResult();
 
         File xsd = new File(this.root, SchemaValidator.XSD_SCHEMA_FILENAME);
+        
         SchemaValidator validator = new SchemaValidator(xsd);
         if (!validator.validate(xml)) {
             xml.delete();
@@ -107,6 +108,7 @@ public class Stockage {
             bw.write(id + "\n");
             bw.write(nom + "\n");
         }
+        
         bw.flush();
         bw.close();
         fr.close();
